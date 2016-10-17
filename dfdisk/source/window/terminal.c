@@ -60,4 +60,33 @@ void titlebar(const char* str)
     SetConsoleTextAttribute(hConsole, 7); //Reset original console colours
 }
 
+/* Clear the screen of all text.*/
+void clear()
+{
+    system("cls");
+
+    set_cur_pos(0, 0);
+}
+
+/* Coloured Printf */
+void printf_col(const char* str)
+{
+    HANDLE  hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //Get the current window handle
+
+    SetConsoleTextAttribute(hConsole, 0xF); //Reset original console colours
+    printf("%s", str);
+    SetConsoleTextAttribute(hConsole, 7); //Reset original console colours
+}
+
+/* Print a centered string */
+void printf_cent(const char* str, int y)
+{
+    int     len = strlen(str);
+    int     x = (80 - len) / 2; //Centre the text
+
+    set_cur_pos(x, y);
+    printf("%s\n", str);
+}
+
+
 
